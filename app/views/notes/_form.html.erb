@@ -1,0 +1,8 @@
+<h4>Add Notes to this track</h4>
+
+<form action="<%= track_notes_url(@track) %>" method="POST">
+  <textarea name="note[text]"><%= @note.text %></textarea>
+  <%= render "shared/form_auth" %>
+  <input type="submit" value="Submit note">
+</form>
+<br>

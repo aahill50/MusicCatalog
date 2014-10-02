@@ -1,0 +1,34 @@
+<!-- Album Show Page -->
+
+<h1><a href="<%= band_url(@album.band) %>">
+    <%= @album.band.name %>
+  </a>
+</h1>
+
+<h2><%= @album.name %></h2>
+
+<a href="<%= new_track_url %>">Add a new track!</a>
+<br>
+<br>
+
+<p>
+  <form action="<%= album_url(@album) %>" method="POST">
+    <%= render "shared/form_auth" %>
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete this album">
+  </form>
+  <small>
+  <a href="<%= edit_album_url(@album) %>">
+    Edit this album
+  </a>
+</small>
+</p>
+<br>
+<br>
+
+  <% @album.tracks.each do |track| %>
+    <a href="<%= track_url(track) %>">
+     <%=  track.name %>
+    </a>
+    <br>
+  <% end %>

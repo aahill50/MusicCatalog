@@ -1,0 +1,15 @@
+<h1>All Bands!</h1>
+<table>
+  <% Band.all.each do |band| %>
+    <tr><td>
+          <a href="<%= band_url(band) %>"><%= band.name %></a>
+        </td>
+        <td>
+          <%= band.albums.count %> Album<%= "s" if band.albums.count > 1 %>
+        </td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<a href="<%= new_band_url %>">Submit a new band!</a>

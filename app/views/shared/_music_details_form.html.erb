@@ -1,0 +1,78 @@
+<% action = params[:action] %>
+<% controller = params[:controller] %>
+
+<% if action == "new" %>
+  <% hidden = "" %>
+  <% url = "#{controller}_url" %>
+  <% url = send(url.to_sym) %>
+<% else %>
+  <% hidden = '<input type="hidden" name="_method" value="PUT">'.html_safe %>
+  <% single_controller = "#{controller}".chop %>
+  <% url = "#{single_controller}_url" %>
+  <% url = send(url.to_sym, single_controller) %>
+<% end %>
+<%  %>
+<% if controller == "bands" %>
+  <% level_of_detail = 1 %>
+<% elsif controller == "albums" %>
+  <% level_of_detail = 2 %>
+<% else %>
+  <% level_of_detail = 3 %>
+<% end %>
+
+<form action="<%= url %>" method="POST">
+
+  <%= render "shared/form_auth" %>
+
+  <%= hidden %>
+  <% if level_of_detail == 1 %>
+    <label for="band_name">Band</label>
+    <input type=>
+
+  <% else %>
+    <label for="album_band_id">Band</label>
+    <select name="album[band_id]">
+      <% Band.all.each do |band| %>
+        <option value=<%= band.id %>
+        <%= "selected=selected".html_safe if @album.band == band %>>
+      <% end %>
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+  <br>
+
+<% if level_of_detail >= 2 %>
+  <label for="album_name">Album Name</label>
+  <input type="text"
+         name="album[name]"
+         id="album_name"
+         value="<%= @album.name %>">
+
+<br>
+  <label for="album_recording_style">Album Style</label>
+  <input type="radio"
+    name="album[recording_style]"
+    id="album_recording_style"
+    value="live"
+    <% if @album.recording_style == "Live" %>
+      checked="checked"
+    <% end %>>
+      Live
+  </option>
+
+  <input type="radio"
+    name="album[recording_style]"
+    id="album_recording_style"
+    value="studio"
+    <% if @album.recording_style == "Studio" %>
+      checked="checked"
+    <% end %>>
+    Studio
+  </option>
+
+  <br>
+<% end %>
+
+  <input type="submit" value="Submit">
+</form>

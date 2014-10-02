@@ -1,0 +1,24 @@
+<% if @track.notes.count > 0 %>
+  <table>
+    <tr>
+      <td><big><strong>User</strong></big></td>
+      <td><big><strong>Comment</strong></big></td>
+    </tr>
+  <% @track.notes.each do |note| %>
+    <tr>
+      <td><%= note.user.email %></td>
+      <td><%= note.text %> </td>
+      <td>
+        <% if note.user == current_user %>
+          <form action="<%= track_note_url(@track, note) %>" method="POST">
+            <%= render "shared/form_auth" %>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete">
+          </form>
+        <% end %>
+
+      </td>
+    </tr>
+    <br>
+  <% end %>
+<% end %>

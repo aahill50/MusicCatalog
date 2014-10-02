@@ -1,0 +1,48 @@
+<!--Album Edit Page -->
+
+<form action="<%= album_url(@album) %>" method="POST">
+  <%= render "shared/form_auth" %>
+
+  <input type="hidden" name="_method" value="PUT">
+
+  <label for="album_band_id">Band</label>
+  <select name="album[band_id]">
+    <% Band.all.each do |band| %>
+      <option value=<%= band.id %>
+        <%= "selected=selected".html_safe if @album.band == band %>>
+        <%= band.name %>
+      </option>
+    <% end %>
+  </select>
+
+  <label for="album_name">Album Name</label>
+  <input type="text"
+         name="album[name]"
+         id="album_name"
+         value="<%= @album.name %>">
+
+<br>
+  <label for="album_recording_style">Album Style</label>
+  <input type="radio"
+    name="album[recording_style]"
+    id="album_recording_style"
+    value="live"
+    <% if @album.recording_style == "Live" %>
+      checked="checked"
+    <% end %>>
+      Live
+  </option>
+
+  <input type="radio"
+    name="album[recording_style]"
+    id="album_recording_style"
+    value="studio"
+    <% if @album.recording_style == "Studio" %>
+      checked="checked"
+    <% end %>>
+    Studio
+  </option>
+
+  <br>
+  <input type="submit" value="Complete Edit">
+</form>

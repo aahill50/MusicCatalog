@@ -1,0 +1,20 @@
+<!-- Track Edit Page -->
+
+<form action="<%= track_url(@track) %>" method="POST">
+  <%= render "shared/form_auth" %>
+
+  <input type="hidden" name="_method" value="PUT">
+
+  <label for="track_name">Track Name</label>
+  <input type="text"
+         name="track[name]"
+         value="<%= @track.name %>"
+         id="track_name">
+   <br>
+
+   <label for="track_lyrics">Lyrics</label>
+   <br>
+   <textarea id="track_lyrics" name="track[lyrics]"><%= @track.lyrics %></textarea>
+   <br>
+  <input type="submit" value="Complete edit">
+</form>

@@ -1,0 +1,16 @@
+<!-- Band Edit Page -->
+
+<form action="<%= band_url(@band) %>" method="POST">
+  <%= render "shared/form_auth" %>
+
+  <input type="hidden" name="_method" value="PUT">
+
+  <label for="band_name">Band Name</label>
+  <input type="text"
+         name="band[name]"
+         value="<%= @band.name %>"
+         id="band_name">
+   <br>
+
+  <input type="submit" value="Complete edit">
+</form>

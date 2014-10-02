@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
     ensure_session_token
   end
 
+  has_many(
+    :notes
+  )
+
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
 
