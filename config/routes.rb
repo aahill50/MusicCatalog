@@ -1,6 +1,5 @@
 MusicCatalog::Application.routes.draw do
-  root to: 'users#index'
-  resources :users, only: [:index, :new, :create]
-  resource :user, only: :show
+  root to: 'users#show'
+  resource :user, only: [:new, :create, :show]
   resource :session, only: [:new, :create, :destroy]
 end
