@@ -8,5 +8,21 @@
 
 <%= yield %>
 
+<% if current_user %>
+  <p>
+    Logged in as: <%= current_user.email %>
+    <br>
+    <form action="<%= session_url %>" method="POST">
+
+      <%= render "shared/form_auth" %>
+
+      <input type="hidden"
+             name="_method"
+             value="DELETE">
+
+     <input type="submit" value="Log out">
+    </form>
+  </p>
+<% end %>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<h1>Sign up!</h1>
+
+<%= render "shared/errors" %>
+
+<form action="<%= users_url %>" method="POST">
+  <%= render "shared/form_auth" %>
+
+  <label for="user_email">Email</label>
+  <input type="text"
+         name=user[email]
+         id="user_email"
+         value="<%= @user.email %>">
+  <br>
+
+  <label for="user_password">Password</label>
+  <input type="password" name=user[password] id="user_password">
+  <br>
+
+  <input type="submit" value="Sign Up">
+  <br>
+  <h3><a href="<%= new_session_url %>">Log in!</a></h3>
+</form>

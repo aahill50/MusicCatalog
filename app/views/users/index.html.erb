@@ -1,0 +1,16 @@
+<h1>All users</h1>
+<a href="<%= new_session_url %>">Log in</a>
+<p>
+  <% User.all.each do |user| %>
+    <a href="<%= user_url(user) %>">
+      <%= user.email %>
+      <br>
+    </a>
+  <% end %>
+  <br>
+
+  <% if !logged_in? %>
+    <h3><a href="<%= new_session_url %>">Log in!</a></h3>
+    <h3><a href="<%= new_user_url %>">Sign up!</a></h3>
+  <% end %>
+</p>
