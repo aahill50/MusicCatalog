@@ -5,14 +5,18 @@
 
   <label for="album_band_id">Band</label>
   <select name="album[band_id]">
+
     <% Band.all.each do |band| %>
       <option value=<%= band.id %>
-        <%= "selected=selected".html_safe if @album.band == band %>>
+
+        <% if @album.band.id == band.id %>
+          <%= "selected=selected" %>
+        <% end %>>
         <%= band.name %>
       </option>
     <% end %>
   </select>
-
+<br>
     <label for="album_name">Album Name</label>
     <input type="text"
            name="album[name]"

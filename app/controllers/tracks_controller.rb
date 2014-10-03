@@ -13,7 +13,7 @@ class TracksController < ApplicationController
   end
 
   def new
-    @track = Track.new
+    @track = Track.new(album_id: params[:album_id])
     render :new
   end
 

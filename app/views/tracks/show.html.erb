@@ -12,7 +12,11 @@
 
 <h3><%= @track.name %></h3>
 
-<textarea><%= @track.lyrics %></textarea>
+<p>
+<h4>Song Lyrics</h4>
+<%= ugly_lyrics(@track.lyrics) %>
+</p>
+<br>
 
   <form action="<%= track_url(@track) %>" method="POST">
     <%= render "shared/form_auth" %>
@@ -25,6 +29,7 @@
     Edit this track
   </a>
 </small>
+
 
 <%= render "notes/form" %>
 <%= render "notes/note" %>
